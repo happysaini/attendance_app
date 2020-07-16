@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite5]" parallel="tests">
+  <test thread-count="2" name="Test2(failed)" parallel="tests">
+    <parameter name="avdName" value="Pixel_3_API_28"/>
+    <parameter name="udid" value="emulator-5556"/>
+    <parameter name="portNumber" value="5000"/>
+    <classes>
+      <class name="com.attendanceApp.Test2">
+        <methods>
+          <include name="f" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.attendanceApp.Test2 -->
+    </classes>
+  </test> <!-- Test2(failed) -->
+</suite> <!-- Failed suite [Suite5] -->

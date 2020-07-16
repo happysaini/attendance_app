@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="12" total="16" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="ParallelSuite" duration-ms="350531" started-at="2020-07-06T07:45:29Z" finished-at="2020-07-06T07:51:19Z">
+    <groups>
+      <group name="Regression">
+        <method signature="Test2.secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@6e33c391]" name="secondTestCase" class="com.attendanceApp.Test2"/>
+        <method signature="Test2.secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@c8b96ec]" name="secondTestCase" class="com.attendanceApp.Test2"/>
+      </group> <!-- Regression -->
+      <group name="Smoke">
+        <method signature="Test1.firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@d816dde]" name="firstTestCase" class="com.attendanceApp.Test1"/>
+        <method signature="Test1.firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@588ab592]" name="firstTestCase" class="com.attendanceApp.Test1"/>
+      </group> <!-- Smoke -->
+    </groups>
+    <test name="Device2" duration-ms="341661" started-at="2020-07-06T07:45:29Z" finished-at="2020-07-06T07:51:10Z">
+      <class name="com.attendanceApp.Test2">
+        <test-method status="PASS" signature="secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@c8b96ec]" name="secondTestCase" duration-ms="90626" started-at="2020-07-06T07:49:32Z" data-provider="SearchProvider" finished-at="2020-07-06T07:51:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{password=admin123, headerText=Login here.., addMemberDetails=FirstName,Mani1;LastName,Kaur1;Phone,1234569852;addr,Testing, Test Case Id=secondTestCase, addStudentBtnName=addstudent, userName=admin, viewStudentBtnName=Viewstudent, expectedButtonsList=, expectedValues=Mani1,Kaur1, logoutButtonName=logout}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- secondTestCase -->
+        <test-method status="PASS" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:com.attendanceApp.Test2@c8b96ec]" name="afterMethod" is-config="true" duration-ms="0" started-at="2020-07-06T07:51:02Z" finished-at="2020-07-06T07:51:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=secondTestCase status=SUCCESS method=Test2.secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@c8b96ec] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- com.attendanceApp.Test2 -->
+      <class name="com.attendanceApp.Test1">
+        <test-method status="PASS" signature="firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@588ab592]" name="firstTestCase" duration-ms="40640" started-at="2020-07-06T07:48:50Z" data-provider="SearchProvider" finished-at="2020-07-06T07:49:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{password=admin123, headerText=Login here.., Test Case Id=firstTestCase, userName=admin, expectedButtonsList=Add student, View student, Attendance Per Student, Add faculty, View faculty, Logout, logoutButtonName=logout}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstTestCase -->
+        <test-method status="PASS" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:com.attendanceApp.Test1@588ab592]" name="afterMethod" is-config="true" duration-ms="4" started-at="2020-07-06T07:49:32Z" finished-at="2020-07-06T07:49:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=firstTestCase status=SUCCESS method=Test1.firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@588ab592] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- com.attendanceApp.Test1 -->
+      <class name="com.attendanceApp.common.SetUp">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.attendanceApp.common.SetUp@21680803]" name="beforeSuite" is-config="true" duration-ms="194233" started-at="2020-07-06T07:45:29Z" finished-at="2020-07-06T07:48:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[5000]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[emulator-5554]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Pixel_3_API_28]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="afterTest(java.lang.String)[pri:0, instance:com.attendanceApp.common.SetUp@21680803]" name="afterTest" is-config="true" duration-ms="7816" started-at="2020-07-06T07:51:02Z" finished-at="2020-07-06T07:51:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[emulator-5554]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.attendanceApp.common.SetUp@21680803]" name="afterSuite" is-config="true" duration-ms="1" started-at="2020-07-06T07:51:19Z" finished-at="2020-07-06T07:51:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.attendanceApp.common.SetUp -->
+    </test> <!-- Device2 -->
+    <test name="Device1" duration-ms="350531" started-at="2020-07-06T07:45:29Z" finished-at="2020-07-06T07:51:19Z">
+      <class name="com.attendanceApp.Test2">
+        <test-method status="PASS" signature="secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@6e33c391]" name="secondTestCase" duration-ms="92028" started-at="2020-07-06T07:49:36Z" data-provider="SearchProvider" finished-at="2020-07-06T07:51:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{password=admin123, headerText=Login here.., addMemberDetails=FirstName,Mani1;LastName,Kaur1;Phone,1234569852;addr,Testing, Test Case Id=secondTestCase, addStudentBtnName=addstudent, userName=admin, viewStudentBtnName=Viewstudent, expectedButtonsList=, expectedValues=Mani1,Kaur1, logoutButtonName=logout}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- secondTestCase -->
+        <test-method status="PASS" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:com.attendanceApp.Test2@6e33c391]" name="afterMethod" is-config="true" duration-ms="1" started-at="2020-07-06T07:51:08Z" finished-at="2020-07-06T07:51:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=secondTestCase status=SUCCESS method=Test2.secondTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test2@6e33c391] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- com.attendanceApp.Test2 -->
+      <class name="com.attendanceApp.Test1">
+        <test-method status="PASS" signature="firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@d816dde]" name="firstTestCase" duration-ms="45425" started-at="2020-07-06T07:48:50Z" data-provider="SearchProvider" finished-at="2020-07-06T07:49:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{password=admin123, headerText=Login here.., Test Case Id=firstTestCase, userName=admin, expectedButtonsList=Add student, View student, Attendance Per Student, Add faculty, View faculty, Logout, logoutButtonName=logout}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- firstTestCase -->
+        <test-method status="PASS" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:com.attendanceApp.Test1@d816dde]" name="afterMethod" is-config="true" duration-ms="2" started-at="2020-07-06T07:49:36Z" finished-at="2020-07-06T07:49:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=firstTestCase status=SUCCESS method=Test1.firstTestCase(java.util.HashMap)[pri:0, instance:com.attendanceApp.Test1@d816dde] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- com.attendanceApp.Test1 -->
+      <class name="com.attendanceApp.common.SetUp">
+        <test-method status="PASS" signature="beforeSuite(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.attendanceApp.common.SetUp@1e886a5b]" name="beforeSuite" is-config="true" duration-ms="193232" started-at="2020-07-06T07:45:29Z" finished-at="2020-07-06T07:48:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[4723]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[emulator-5556]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Nexus_5_API_28]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="afterTest(java.lang.String)[pri:0, instance:com.attendanceApp.common.SetUp@1e886a5b]" name="afterTest" is-config="true" duration-ms="11325" started-at="2020-07-06T07:51:08Z" finished-at="2020-07-06T07:51:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[emulator-5556]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.attendanceApp.common.SetUp -->
+    </test> <!-- Device1 -->
+  </suite> <!-- ParallelSuite -->
+</testng-results>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DistibutedSuite" thread-count="2" parallel="tests" verbose="10">
+
+  <test name="Device1" verbose="10">
+  <parameter name="portNumber" value="4723"/>
+  <parameter name="udid" value="${udid1}"/>
+  <parameter name="deviceName" value="${deviceName1}"/>
+	  <groups>
+		<run>
+			<include name="Smoke" />
+		</run>
+	  </groups>
+  
+      <packages>
+		<package name="com.attendanceApp.*" />
+	  </packages>
+  </test> <!-- Test -->
+  
+   <test name="Device2" verbose="10">
+   
+     <parameter name="portNumber" value="5000"/>
+  	 <parameter name="udid" value="${udid2}"/>
+  	 <parameter name="deviceName" value="${deviceName2}"/>
+	  <groups>
+		<run>
+			<include name="Regression" />
+		</run>
+	  </groups>
+  
+      <packages>
+		<package name="com.attendanceApp.*" />
+	  </packages>
+  </test> <!-- Test -->
+</suite> <!-- Suite5 -->

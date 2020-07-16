@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" guice-stage="DEVELOPMENT" verbose="10" name="Failed suite [DistibutedSuite]" parallel="tests">
+  <test thread-count="2" verbose="10" name="Device1(failed)" parallel="tests">
+    <parameter name="udid" value="emulator-5556"/>
+    <parameter name="deviceName" value="Nexus_5_API_28"/>
+    <parameter name="portNumber" value="4723"/>
+    <groups>
+      <run>
+        <include name="Smoke"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.attendanceApp.Test1">
+        <methods>
+          <include name="firstTestCase"/>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+          <include name="afterTest"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- com.attendanceApp.Test1 -->
+    </classes>
+  </test> <!-- Device1(failed) -->
+</suite> <!-- Failed suite [DistibutedSuite] -->

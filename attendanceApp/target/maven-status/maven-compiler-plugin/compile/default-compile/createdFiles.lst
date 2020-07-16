@@ -1,0 +1,6 @@
+com\attendanceApp\AppiumServerJava.class
+com\attendanceApp\utils\getData.class
+com\attendanceApp\StudentappPage.class
+com\attendanceApp\utils\Log.class
+com\attendanceApp\AbstractPage.class
+com\attendanceApp\utils\Utils.class
