@@ -33,18 +33,10 @@ stages:
         appium -v
         nohup appium > /dev/null 2>&1 &
         echo "*********************************"
-        whereis appium
+        command -v appium
+        command -v node
         echo "*********************************"
       displayName: 'Install Common  Depndencies'
-    - task: Bash@3
-      inputs:
-        filePath: 'script/setup.sh'
-      displayName: 'Install Emulator'
-    - bash: |
-        adb devices
-        cd attendanceApp
-        mvn install
-        mvn clean compile test -DsuiteXmlFile=Single -DdeviceName1=nexus -Dudid1="emulator-5554"
-      displayName: 'Check'
+
 
 
