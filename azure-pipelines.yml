@@ -20,18 +20,10 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - bash: |
-        echo "Testing java and npm version"
-        echo $JAVA_HOME
-        java -version
-        node -v
-        npm --version
+        echo "Installing java and npm "
         sudo npm install -g n
         sudo n stable
-        node -v
-        npm --version
         npm install -g appium
-        appium -v
-        nohup appium > /dev/null 2>&1 &
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
@@ -40,7 +32,7 @@ stages:
     - bash: |
         adb devices
         cd attendanceApp
-        mvn install
+        mvn install -Dmaven.test.skip=true
         mvn clean compile test -DsuiteXmlFile=Single -DdeviceName1=nexus -Dudid1="emulator-5554"
       displayName: 'Check'
 
