@@ -88,7 +88,8 @@ public class SetUp {
 			capabilities.setCapability("newCommandTimeout", 30000);
 			capabilities.setCapability("allowTestPackages", true);
 			capabilities.setCapability("automationName", "Appium");
-			capabilities.setCapability("app","../../../../../../app/app-debug.apk");
+			capabilities.setCapability("app",
+					System.getProperty("user.dir") + "/app/app-debug.apk");
 			try {
 				driver.set(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:" + portNumber + "/wd/hub"),
 						capabilities));
