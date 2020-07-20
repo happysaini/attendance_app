@@ -21,8 +21,13 @@ stages:
     steps:
     - bash: |
         echo "Testing java and npm version"
-        java --version
+        echo $JAVA_HOME
+        java -version
+        node -v
         npm --version
+        sudo npm install -g n
+        sudo n stable
+        node -v
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
