@@ -41,6 +41,7 @@ stages:
         filePath: 'script/setup.sh'
       displayName: 'Install Emulator'
     - bash: |
+        adb devices
         cd attendanceApp
         mvn install
         mvn clean compile test -X -DsuiteXmlFile=Single -DdeviceName1=nexus -Dudid1="emulator-5554"
