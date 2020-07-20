@@ -29,6 +29,12 @@ stages:
         sudo n stable
         node -v
         npm --version
+        npm install -g appium
+        appium -v
+        appium
+        echo "*********************************"
+        mvn --version
+        echo "*********************************"
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
