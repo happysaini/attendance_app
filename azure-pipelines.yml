@@ -20,17 +20,28 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - bash: |
+        echo "Testing java and npm version"
+        echo $JAVA_HOME
+        java -version
+        node -v
+        npm --version
         sudo npm install -g n
         sudo n stable
-        echo "Installing Appium"
+        node -v
+        npm --version
         npm install -g appium
         appium -v
         appium >> 2&>1 /dev/null
+        echo "*********************************"
+        mvn --version
+        echo "*********************************"
       displayName: 'Install Common  Depndencies'
+    - task: Bash@3
+      inputs:
+        filePath: 'script/setup.sh'
+      displayName: 'Install Emulator'
     - bash: |
-        ls -ltra
-        cd scripts
-        ls -ltra
+        echo "test"
       displayName: 'Check'
 
 
