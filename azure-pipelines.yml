@@ -6,17 +6,30 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+  # Global Application Variables
+  vmImageName: 'macOS-10.14'
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+stages:
+- stage: SetupDependencies
+  displayName: Setup Dependencies
+  jobs:
+  - job: SetupDependenciesJob
+    displayName: Setup Dependencies Job
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - bash: |
+        echo "Testing java and npm version"
+        java --version
+        npm --version
+      displayName: 'Install Common  Depndencies'
+    - task: Bash@3
+      inputs:
+        filePath: 'script/setup.sh'
+      displayName: 'Install Emulator'
+    - bash: |
+        npm --version
+      displayName: 'Check'
+
+
