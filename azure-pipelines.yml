@@ -31,9 +31,9 @@ stages:
         npm --version
         npm install -g appium
         appium -v
-        appium >> 2&>1 /dev/null
+        nohup appium > /dev/null 2>&1 &
         echo "*********************************"
-        mvn --version
+        whereis appium
         echo "*********************************"
       displayName: 'Install Common  Depndencies'
     - task: Bash@3

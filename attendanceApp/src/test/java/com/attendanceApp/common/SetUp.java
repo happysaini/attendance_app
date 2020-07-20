@@ -57,7 +57,7 @@ public class SetUp {
 		PropertyConfigurator.configure(log4jConfPath);
 			try {
 				if(!deviceName.equals("Android")){
-					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "\\emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
+					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "/emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
 					runGivenCommand(commandToLaunchEmulator);
 					Thread.sleep(60000);
 					Log.info("Wait for " + deviceName + " emulator to launch");
@@ -89,7 +89,7 @@ public class SetUp {
 			capabilities.setCapability("allowTestPackages", true);
 			capabilities.setCapability("automatioName", "UiAutomation2");
 			capabilities.setCapability("app",
-					System.getProperty("user.dir") + "\\app\\app-debug.apk");
+					System.getProperty("user.dir") + "/app/app-debug.apk");
 			try {
 				driver.set(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:" + portNumber + "/wd/hub"),
 						capabilities));
