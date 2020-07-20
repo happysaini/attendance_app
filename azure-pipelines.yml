@@ -41,7 +41,10 @@ stages:
         filePath: 'script/setup.sh'
       displayName: 'Install Emulator'
     - bash: |
-        echo "test"
+        ls -ltra
+        cd script
+        ls -ltra
+        pwd
       displayName: 'Check'
 
 
