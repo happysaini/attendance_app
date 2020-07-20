@@ -43,7 +43,7 @@ stages:
     - bash: |
         cd attendanceApp
         mvn install
-        mvn clean compile test -X -DsuiteXmlFile=testingSingle -DdeviceName1=nexus -Dudid1="emulator-5554"
+        mvn clean compile test -X -DsuiteXmlFile=Single -DdeviceName1=nexus -Dudid1="emulator-5554"
       displayName: 'Check'
 
 
