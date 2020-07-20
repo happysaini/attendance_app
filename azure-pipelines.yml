@@ -42,7 +42,8 @@ stages:
       displayName: 'Install Emulator'
     - bash: |
         cd attendanceApp
-        mvn clean compile test -DsuiteXmlFile=testingSingle.xml -DdeviceName1=nexus -Dudid1="emulator-5554"
+        mvn install
+        mvn clean compile test -X -DsuiteXmlFile=testingSingle -DdeviceName1=nexus -Dudid1="emulator-5554"
       displayName: 'Check'
 
 
