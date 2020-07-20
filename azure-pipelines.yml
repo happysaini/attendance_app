@@ -36,6 +36,8 @@ stages:
         command -v appium
         command -v node
         echo "*********************************"
+        ls -ltra /usr/local/bin/appium
+        ls -ltra /usr/local/lib/node_modules/appium/build/lib/
       displayName: 'Install Common  Depndencies'
 
 
