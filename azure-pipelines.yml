@@ -41,10 +41,8 @@ stages:
         filePath: 'script/setup.sh'
       displayName: 'Install Emulator'
     - bash: |
-        ls -ltra
-        cd script
-        ls -ltra
-        pwd
+        cd attendanceApp
+        mvn clean compile test -DsuiteXmlFile=testingSingle.xml -DdeviceName1=nexus -Dudid1="emulator-5554"
       displayName: 'Check'
 
 
