@@ -31,6 +31,29 @@ stages:
       inputs:
         filePath: 'script/setup.sh'
       displayName: 'Install Emulator'
+    - task: Cache@2
+      inputs:
+        key: '"funcs" | maven |"$(Agent.OS)" | **/pom.xml'
+        restoreKeys: |
+        path: $(MAVEN_CACHE_FOLDER)
+      displayName: Cache Maven local repo
+
+    - task: MavenAuthenticate@0
+      displayName: Authenticate Maven to Artifacts feed
+      inputs:
+        artifactsFeeds: artifacts-maven
+
+    - task: Maven@3
+      inputs:
+        mavenPomFile: '$(System.DefaultWorkingDirectory)/attendanceApp/pom.xml'
+        options: '-DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
     - bash: |
         adb devices
         cd attendanceApp
@@ -42,7 +65,3 @@ stages:
     - bash: |
         echo "Sending Slack Notification"
       
-
-
-
-
