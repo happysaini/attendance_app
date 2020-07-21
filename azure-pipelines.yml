@@ -9,6 +9,8 @@ trigger:
 variables:
   # Global Application Variables
   vmImageName: 'macOS-10.14'
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
 
 stages:
 - stage: SetupDependencies
@@ -20,7 +22,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - bash: |
-        echo "Installing java and npm "
+        echo "Installing Common  Depndencies"
         sudo npm install -g n
         sudo n stable
         npm install -g appium
@@ -33,10 +35,13 @@ stages:
         adb devices
         cd attendanceApp
         mvn install -Dmaven.test.skip=true
-        mvn clean compile test -DsuiteXmlFile=Distributed -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
-      displayName: 'Testing'
+        mvn clean compile test -DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
+      displayName: 'Testing Application'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results
       artifact: report
+    - bash: |
+        echo "Send Slack Notification"
+      
 
 
 
