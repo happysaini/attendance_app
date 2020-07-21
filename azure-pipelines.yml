@@ -12,6 +12,7 @@ variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
   MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   BuildNum: '$(BuildID)'
+  WorkingDir: '$(System.DefaultWorkingDirectory)'
 
 stages:
 - stage: SetupDependencies
@@ -55,9 +56,9 @@ stages:
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
     - bash: |
-        allure $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
+        allure ${WorkingDir}/attendanceApp/target/allure-results --clean -o ${WorkingDir}/attendanceApp/target/allure-report
       displayName: Generate allure report
-    - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report/
+    - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/emailable-report.html
       artifact: report
     - bash: |
         echo "Send Slack Notification"
