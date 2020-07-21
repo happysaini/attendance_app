@@ -31,7 +31,7 @@ public class Test1 extends SetUp{
 		
 		studentappPage.enterPassword(testData.get("password"));
 
-		studentappPage.tapDeviceBackButton();
+		//studentappPage.tapDeviceBackButton();
 
 		studentappPage.tapOnLoginButton();
 
