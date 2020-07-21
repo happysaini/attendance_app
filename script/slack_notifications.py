@@ -3,7 +3,7 @@ import html2text
 from bs4 import BeautifulSoup
 import argparse
 
-webhook_url = "https://hooks.slack.com/services/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"
+webhook_url = "https://hooks.slack.com/services/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"
 payload = {'channels': ['#ci-cd']}
 
 
@@ -22,10 +22,10 @@ def main():
         status = h.handle(str(status[0]))
     
     
-    methods = ""
-    passed = ""
-    failed = ""
-    skipped= ""
+    methods = "0 method"
+    passed = "0 passed"
+    failed = "0 failed"
+    skipped= "0 skipped"
     get_status = status.split(",")
     for i in get_status:
         if "methods" in i:
@@ -39,10 +39,10 @@ def main():
     
     title = "Mobile CI/CD:  Tests execution details for build #" + str(arguments.build_number)
     
-    if(failed):
+    if(failed != "0 failed"):
         status = "danger"
-    elif(skipped):
-        if(failed):
+    elif(skipped != "0 skipped"):
+        if(failed != "0 failed"):
             status = "danger"
         else:
             status = "warning"
@@ -68,7 +68,7 @@ def main():
     }]
     payload['attachments'] = attachments
     r = requests.post(webhook_url, json=payload)
-    print(payload)
+    print(r)
 
 if __name__ == "__main__":
     main()
