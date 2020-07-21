@@ -63,5 +63,5 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results
       artifact: report
     - bash: |
-        echo "Sending Slack Notification"
+        echo "Send Slack Notification"
       
