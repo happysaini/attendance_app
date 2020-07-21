@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- master
+- updating
 
 variables:
   # Global Application Variables
@@ -40,7 +40,7 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results
       artifact: report
     - bash: |
-        echo "Send Slack Notification"
+        echo "Sending Slack Notification"
       
 
 
