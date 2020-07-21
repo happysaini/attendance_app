@@ -56,11 +56,9 @@ stages:
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
     - bash: |
-        allure ${WorkingDir}/attendanceApp/target/allure-results --clean -o ${WorkingDir}/attendanceApp/target/allure-report
+        allure generate ${WorkingDir}/attendanceApp/target/allure-results --clean -o ${WorkingDir}/attendanceApp/target/allure-report
       displayName: Generate allure report
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/emailable-report.html
       artifact: report
-    - bash: |
-        echo "Send Slack Notification"
-        echo "${BuildNum}"
+
       
