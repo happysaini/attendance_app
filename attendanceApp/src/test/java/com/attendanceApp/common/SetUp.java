@@ -88,7 +88,7 @@ public class SetUp {
 			capabilities.setCapability("adbExecTimeout", 40000);
 			capabilities.setCapability("newCommandTimeout", 30000);
 			capabilities.setCapability("allowTestPackages", true);
-			capabilities.setCapability("automationName", "Appium");
+			capabilities.setCapability("automationName", "UiAutomator2");
 			capabilities.setCapability("app",
 					System.getProperty("user.dir") + "/app/app-debug.apk");
 			try {
