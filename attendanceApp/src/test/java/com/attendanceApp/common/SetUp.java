@@ -63,7 +63,7 @@ public class SetUp {
 					Log.info("Wait for " + deviceName + " emulator to launch");
 					Thread.sleep(60000);
 					Log.info("Wait for emulator to restart the emulator");
-					Log.info(System.getProperty("user.dir"))
+					Log.info(System.getProperty("user.dir"));
 				}
 				
 				AppiumServerJava appiumServer = new AppiumServerJava();
