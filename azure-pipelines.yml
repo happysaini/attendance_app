@@ -48,6 +48,12 @@ stages:
         mvn install -Dmaven.test.skip=true
         mvn clean compile test -DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
       displayName: 'Testing Application'
+    - bash: |
+        allure generate $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
+      displayName: Generate allure report
+    - bash: |
+        python script/slack_notifications.py --html_report_path $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/index.html --build_number ${BUILD_NUM}
+      displayName: 'Sending Slack Notification'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target
       artifact: report
 

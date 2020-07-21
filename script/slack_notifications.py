@@ -16,26 +16,36 @@ def main():
     with open(arguments.html_report_path, "r") as f:
         text = f.read()
         soup = BeautifulSoup(text, 'html.parser')
-        passed_test = soup.find_all('span', attrs={'class': 'passed'})
-        failed_test = soup.find_all('span', attrs={'class': 'failed'})
-        skipped_test = soup.find_all('span', attrs={'class': 'skipped'})
-        error_test = soup.find_all('span', attrs={'class': 'error'})
+        status = soup.find_all('span', attrs={'class': 'method-stats'})
 
         h = html2text.HTML2Text()
-        passed = h.handle(str(passed_test[0]))
-        failed = h.handle(str(failed_test[0]))
-        error = h.handle(str(error_test[0]))
-        skipped = h.handle(str(skipped_test[0]))
-
-    if ("api" in arguments.html_report_path):
-        title = "Book Library Management:  Tests execution details for build #" + str(arguments.build_number) + "\n API Testing Framework"
-    elif ("ui" in arguments.html_report_path):
-        title = "Book Library Management:  Tests execution details for build #" + str(arguments.build_number) + "\n Web Automation Testing Framework"
-
-    if (int(failed.split(" ")[0]) != 0):
+        status = h.handle(str(status[0]))
+    
+    
+    methods = ""
+    passed = ""
+    failed = ""
+    skipped= ""
+    get_status = status.split(",")
+    for i in get_status:
+        if "methods" in i:
+            methods = i
+        elif "passed" in i:
+            passed = i
+        elif "failed" in i:
+            failed = i
+        elif "skip" in i:
+            skipped = i
+    
+    title = "Mobile CI/CD:  Tests execution details for build #" + str(arguments.build_number)
+    
+    if(failed):
         status = "danger"
-    elif (int(error.split(" ")[0]) != 0 or int(skipped.split(" ")[0]) != 0 and int(failed.split(" ")[0]) == 0):
-        status = "warning"
+    elif(skipped):
+        if(failed):
+            status = "danger"
+        else:
+            status = "warning"
     else:
         status = "good"
 
@@ -51,10 +61,6 @@ def main():
             "value": failed,
             "short": True
         }, {
-            "title": "Erroneous Test Cases",
-            "value": error,
-            "short": True
-        }, {
             "title": "Skipped Test Cases",
             "value": skipped,
             "short": True
@@ -62,7 +68,7 @@ def main():
     }]
     payload['attachments'] = attachments
     r = requests.post(webhook_url, json=payload)
-
+    print(payload)
 
 if __name__ == "__main__":
     main()
