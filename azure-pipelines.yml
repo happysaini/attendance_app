@@ -54,12 +54,6 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
-    - bash: |
-        adb devices
-        cd attendanceApp
-        mvn install -Dmaven.test.skip=true
-        mvn clean compile test -DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
-      displayName: 'Testing Application'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results
       artifact: report
     - bash: |
