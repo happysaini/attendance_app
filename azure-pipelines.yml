@@ -42,17 +42,12 @@ stages:
       displayName: Authenticate Maven to Artifacts feed
       inputs:
         artifactsFeeds: artifacts-maven
-    - task: Maven@3
-      inputs:
-        mavenPomFile: '$(System.DefaultWorkingDirectory)/attendanceApp/pom.xml'
-        options: '-DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
+    - bash: |
+        adb devices
+        cd attendanceApp
+        mvn install -Dmaven.test.skip=true
+        mvn clean compile test -DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
+      displayName: 'Testing Application'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target
       artifact: report
 
