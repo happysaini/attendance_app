@@ -26,8 +26,7 @@ stages:
         echo "Installing Common  Depndencies"
         sudo npm install -g n
         sudo n stable
-        npm install -g appium
-        npm install -g allure-commandline --save-dev
+        npm install -g appium allure-commandline
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
@@ -54,9 +53,6 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
-    - bash: |
-        allure generate $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
-      displayName: Generate allure report
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/emailable-report.html
       artifact: report
 
