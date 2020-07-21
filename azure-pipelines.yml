@@ -26,6 +26,7 @@ stages:
         sudo npm install -g n
         sudo n stable
         npm install -g appium
+        npm 
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
@@ -37,12 +38,10 @@ stages:
         restoreKeys: |
         path: $(MAVEN_CACHE_FOLDER)
       displayName: Cache Maven local repo
-
     - task: MavenAuthenticate@0
       displayName: Authenticate Maven to Artifacts feed
       inputs:
         artifactsFeeds: artifacts-maven
-
     - task: Maven@3
       inputs:
         mavenPomFile: '$(System.DefaultWorkingDirectory)/attendanceApp/pom.xml'
@@ -54,7 +53,10 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
-    - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results
+    - bash: |
+        allure $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
+      displayName: Generate allure report
+    - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results/
       artifact: report
     - bash: |
         echo "Send Slack Notification"
