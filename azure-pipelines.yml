@@ -9,9 +9,9 @@ trigger:
 variables:
   # Global Application Variables
   vmImageName: 'macOS-10.14'
+  BUILD_NUM: '$(Build.BuildNumber)'
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
   MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
-  BuildNum: '$(Build.BuildNumber)'
 
 stages:
 - stage: SetupDependencies
