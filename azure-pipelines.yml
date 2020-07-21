@@ -27,7 +27,6 @@ stages:
         sudo npm install -g n
         sudo n stable
         npm install -g appium allure-commandline
-        pip install smtplib
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:
