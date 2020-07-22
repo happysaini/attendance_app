@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DistibutedSuite" thread-count="2" parallel="tests" verbose="10">
 
+	<listeners>
+		<listener class-name="com.attendanceApp.utils.TestListener" />
+	</listeners>
+
   <test name="Device1" verbose="10">
   <parameter name="portNumber" value="4723"/>
   <parameter name="udid" value="${udid1}"/>
@@ -17,7 +21,7 @@
 	  </packages>
   </test> <!-- Test -->
   
-   <test name="Device2" verbose="10">
+  <test name="Device2" verbose="10">
    
      <parameter name="portNumber" value="5000"/>
   	 <parameter name="udid" value="${udid2}"/>

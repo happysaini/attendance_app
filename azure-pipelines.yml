@@ -55,9 +55,6 @@ stages:
     - bash: |
         allure generate $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
       displayName: Generate allure report
-    - bash: |
-        python script/slack_notifications.py --html_report_path $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/index.html
-      displayName: 'Sending Slack Notification'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target
       artifact: report
 
