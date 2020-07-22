@@ -28,7 +28,7 @@ public class Utils {
 		String userName = randomAlphabets + randomNumber;
 		return userName;
 	}
-
+//
 //    public static void fluentWaitForElementToBeClickable(WebElement element){
 //        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 //                .withTimeout(30, TimeUnit.SECONDS)

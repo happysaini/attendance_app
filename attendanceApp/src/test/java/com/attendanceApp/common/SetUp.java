@@ -3,7 +3,9 @@ package com.attendanceApp.common;
 import org.testng.annotations.BeforeTest;
 
 import com.attendanceApp.AppiumServerJava;
+import com.attendanceApp.utils.ExtentManager;
 import com.attendanceApp.utils.Log;
+import com.aventstack.extentreports.ExtentReports;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -17,7 +19,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 
 import org.apache.commons.exec.CommandLine;
@@ -57,13 +58,12 @@ public class SetUp {
 		PropertyConfigurator.configure(log4jConfPath);
 			try {
 				if(!deviceName.equals("Android")){
-					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "/emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
+					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "\\emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
 					runGivenCommand(commandToLaunchEmulator);
 					Thread.sleep(60000);
 					Log.info("Wait for " + deviceName + " emulator to launch");
 					Thread.sleep(60000);
 					Log.info("Wait for emulator to restart the emulator");
-					Log.info(System.getProperty("user.dir"));
 				}
 				
 				AppiumServerJava appiumServer = new AppiumServerJava();
@@ -88,9 +88,9 @@ public class SetUp {
 			capabilities.setCapability("adbExecTimeout", 40000);
 			capabilities.setCapability("newCommandTimeout", 30000);
 			capabilities.setCapability("allowTestPackages", true);
-			capabilities.setCapability("automationName", "UiAutomator2");
+			capabilities.setCapability("automatioName", "UiAutomation2");
 			capabilities.setCapability("app",
-					System.getProperty("user.dir") + "/app/app-debug.apk");
+					System.getProperty("user.dir") + "\\app\\app-debug.apk");
 			try {
 				driver.set(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:" + portNumber + "/wd/hub"),
 						capabilities));
@@ -153,8 +153,7 @@ public class SetUp {
 	@AfterMethod(groups = {"Regression","Smoke"})
 	public void afterMethod(ITestResult result) {
 		if(!result.isSuccess()){
-			File classpathRoot = new File(System.getenv("USERPROFILE") + "/Desktop");
-			File screenshotDir = new File(classpathRoot,  "/Screenshots/");
+			File screenshotDir = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "target/Screenshots/");
 			int randomNumber = new Random().nextInt(999999);
 	    	File screenshot = new File(screenshotDir, "Screenshot_" + randomNumber + ".png");
 	    	File file = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
@@ -180,7 +179,6 @@ public class SetUp {
 			List<String> commandsToStopAppiumServers = Arrays.asList("/c","taskkill","/F","/IM","node.exe");
 			runGivenCommand(commandsToStopAppiumServers);
 			Log.info("Kill the appium server");
-			
 		} catch (Exception e) {
 		}
 	}

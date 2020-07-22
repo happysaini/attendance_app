@@ -17,9 +17,9 @@ public class getData {
 	  @DataProvider(name="SearchProvider")
 	  public Object[][] getDataFromDataprovider(Method m) {
 		try {
-			System.out.println(System.getProperty("user.dir") + "/src/main/resources/config/Testdata.xlsx");
+			System.out.println(System.getProperty("user.dir") + "\\src\\main\\resources\\config\\Testdata.xlsx");
 			FileInputStream fis = new FileInputStream(
-					System.getProperty("user.dir") + "/src/main/resources/config/Testdata.xlsx");
+					System.getProperty("user.dir") + "\\src\\main\\resources\\config\\Testdata.xlsx");
 			wb = new XSSFWorkbook(fis);
 		} catch (Exception e1) {
 			e1.printStackTrace();

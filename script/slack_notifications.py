@@ -34,7 +34,7 @@ def main():
         elif "skip" in i:
             skipped = i
     
-    title = "Mobile CI/CD:  Tests execution details
+    title = "Mobile CI/CD:  Tests execution details"
     
     if(failed != "0 failed"):
         status = "danger"
