@@ -3,24 +3,21 @@ import html2text
 from bs4 import BeautifulSoup
 import argparse
 
-webhook_url = "https://hooks.slack.com/services/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"
-payload = { 'channels': ['#ci-cd'] }
+webhook_url = "https://hooks.slack.com/services/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"
+payload = { 'channels': ['#cicd-test'] }
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--html_report_path', type=str, required=False, default=None, help="Path to the HTML report")
-    parser.add_argument('--build_number', type=str, required=False, default=None, help="CodeBuild Build Number")
     arguments = parser.parse_args()
 
     with open(arguments.html_report_path, "r") as f:
         text = f.read()
         soup = BeautifulSoup(text, 'html.parser')
         status = soup.find_all('span', attrs={'class': 'method-stats'})
-
         h = html2text.HTML2Text()
         status = h.handle(str(status[0]))
-    
     
     methods = "0 method"
     passed = "0 passed"
@@ -37,7 +34,7 @@ def main():
         elif "skip" in i:
             skipped = i
     
-    title = "Mobile CI/CD:  Tests execution details for build #" + str(arguments.build_number)
+    title = "Mobile CI/CD:  Tests execution details
     
     if(failed != "0 failed"):
         status = "danger"
