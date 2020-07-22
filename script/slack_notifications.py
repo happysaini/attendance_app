@@ -3,7 +3,7 @@ import html2text
 from bs4 import BeautifulSoup
 import argparse
 
-webhook_url = "https://hooks.slack.com/services/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"
+webhook_url = "https://hooks.slack.com/services/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"
 payload = { 'channels': ['#ci-cd'] }
 
 
