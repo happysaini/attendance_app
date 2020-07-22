@@ -16,7 +16,7 @@ public class AppiumServerJava {
 	public void startServer(int port) {
 		//Build the Appium service
 		builder = new AppiumServiceBuilder();
-		builder.usingDriverExecutable(new File("/usr/local/lib/node"));
+		builder.usingDriverExecutable(new File("/usr/local/bin/node"));
 		builder.withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"));
 		builder.withIPAddress("127.0.0.1");
 		builder.usingPort(port);
