@@ -28,7 +28,7 @@ public class ExtentManager {
         String fileName = getReportPath(reportFilepath);
        
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
-        htmlReporter.loadXMLConfig(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\config\\extent-config.xml"));
+        htmlReporter.loadXMLConfig(new File(System.getProperty("user.dir")+"/src/main/resources/config/extent-config.xml"));
  
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
