@@ -1,59 +1,50 @@
-import argparse
 import smtplib
-import base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import argparse
 
+#get file from argument
+parser = argparse.ArgumentParser()
+parser.add_argument('--html_report_file', type=str, required=False, default=None, help="HTML report of test framework")
+parser.add_argument('--password', type=str, required=False, default=None, help="password to be passed for sending email")
+arguments = parser.parse_args()
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--html_report_path', type=str, required=False, default=None, help="Path to the HTML report")
-    parser.add_argument('--build_number', type=str, required=False, default=None, help="CodeBuild Build Number")
-    arguments = parser.parse_args()
-    # Read a file and encode it into base64 format
-    fo = open(arguments.html_report_path, "rb")
-    filecontent = fo.read()
-    encodedcontent = base64.b64encode(filecontent)  # base64
+#The mail addresses and password
+sender_address = 'hsaini@qasource.com'
+sender_pass = arguments.password
+receiver_address = 'hsaini@qasource.com'
 
-    sender = 'webmaster@tutorialpoint.com'
-    reciever = 'amrood.admin@gmail.com'
+mail_content = '''Hi Team
 
-    marker = "AUNIQUEMARKER"
+Mobile CI/CD Pipeline has compleated. 
+Please find HTML Results/Logs as attachment
 
-    body ="""
-    This is a test email to send an attachement.
-    """
-    # Define the main headers.
-    part1 = """From: From Person <me@fromdomain.net>
-    To: To Person <amrood.admin@gmail.com>
-    Subject: Sending Attachement
-    MIME-Version: 1.0
-    Content-Type: multipart/mixed; boundary=%s
-    --%s
-    """ % (marker, marker)
-
-    # Define the message action
-    part2 = """Content-Type: text/plain
-    Content-Transfer-Encoding:8bit
-
-    %s
-    --%s
-    """ % (body,marker)
-
-    # Define the attachment section
-    part3 = """Content-Type: multipart/mixed; name=\"%s\"
-    Content-Transfer-Encoding:base64
-    Content-Disposition: attachment; filename=%s
-
-    %s
-    --%s--
-    """ %(filename, filename, encodedcontent, marker)
-    message = part1 + part2 + part3
-
-    try:
-       smtpObj = smtplib.SMTP('localhost')
-       smtpObj.sendmail(sender, reciever, message)
-       print "Successfully sent email"
-    except Exception:
-       print "Error: unable to send email"
-        
-if __name__ == "__main__":
-    main()
+Thanks
+DevOps Team
+'''
+#Setup the MIME
+message = MIMEMultipart()
+message['From'] = sender_address
+message['To'] = receiver_address
+message['Subject'] = 'Mobile CI/CD | Test Report'
+#The subject line
+#The body and the attachments for the mail
+message.attach(MIMEText(mail_content, 'plain'))
+attach_file_name = arguments.html_report_file
+attach_file = open(attach_file_name, 'rb') # Open the file as binary mode
+payload = MIMEBase('application', 'octate-stream')
+payload.set_payload((attach_file).read())
+encoders.encode_base64(payload) #encode the attachment
+#add payload header with filename
+payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
+message.attach(payload)
+#Create SMTP session for sending the mail
+session = smtplib.SMTP('173.247.240.172', 587)
+session.starttls() #enable security
+session.login(sender_address, sender_pass) #login with mail_id and password
+text = message.as_string()
+session.sendmail(sender_address, receiver_address, text)
+session.quit()
+print('Mail Sent')
