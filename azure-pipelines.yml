@@ -65,7 +65,7 @@ stages:
         python script/slack_notifications.py --html_report_path $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/index.html
       displayName: 'Sending Slack Notification'
     - bash: |
-        python script/email_notifications.py --html_report_path "$(System.DefaultWorkingDirectory)/attendanceApp/target/TestReport/Test-Automaton-Report.html" --password ${{ parameter.EMAIL_PASS }}
+        python script/email_notifications.py --html_report_path "$(System.DefaultWorkingDirectory)/attendanceApp/target/TestReport/Test-Automaton-Report.html" --password ${{ parameters.EMAIL_PASS }}
       displayName: 'Sending Email Notification'
     - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target
       artifact: report
