@@ -31,8 +31,6 @@ public class Test2 extends SetUp{
 
 		studentappPage.enterPassword(testData.get("password"));
 
-		studentappPage.tapDeviceBackButton();
-
 		studentappPage.tapOnLoginButton();
 
 		studentappPage.tapOnGivenButton(testData.get("addStudentBtnName"));

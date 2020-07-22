@@ -31,8 +31,6 @@ public class Test1 extends SetUp{
 		
 		studentappPage.enterPassword(testData.get("password"));
 
-		studentappPage.tapDeviceBackButton();
-
 		studentappPage.tapOnLoginButton();
 
 		assertThat(studentappPage.getListOfAllButtonsDisplayed()).isEqualTo(Arrays.asList(testData.get("expectedButtonsList").split(", ")));
