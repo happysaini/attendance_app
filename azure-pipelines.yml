@@ -27,7 +27,7 @@ stages:
         sudo npm install -g n
         sudo n stable
         npm install -g appium allure-commandline
-        pip install requests
+        pip install requests 
         pip install html2text
         pip install bs4
         pip install argparse
