@@ -31,6 +31,7 @@ stages:
         pip install html2text
         pip install bs4
         pip install argparse
+        whereis node
       displayName: 'Install Common  Depndencies'
     - task: Bash@3
       inputs:

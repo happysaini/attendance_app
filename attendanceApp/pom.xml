@@ -15,7 +15,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <aspectj.version>1.9.4</aspectj.version>
-    <allure.results.directory>C:\Jenkins\workspace\AttendanceApp\target\allure-results</allure.results.directory>
+    <allure.results.directory>target/allure-results</allure.results.directory>
     <allure.report.directory>target/allure-report</allure.report.directory>
     <suiteXmlFile>Parallel</suiteXmlFile>
     <deviceName1>Nexus_5_API_28</deviceName1>
