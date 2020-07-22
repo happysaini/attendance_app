@@ -8,11 +8,12 @@ import argparse
 #get file from argument
 parser = argparse.ArgumentParser()
 parser.add_argument('--html_report_file', type=str, required=False, default=None, help="HTML report of test framework")
+parser.add_argument('--email', type=str, required=False, default=None, help="User Email for sending email")
 parser.add_argument('--password', type=str, required=False, default=None, help="password to be passed for sending email")
 arguments = parser.parse_args()
 
 #The mail addresses and password
-sender_address = 'hsaini@qasource.com'
+sender_address = arguments.email
 sender_pass = arguments.password
 receiver_address = 'hsaini@qasource.com'
 
