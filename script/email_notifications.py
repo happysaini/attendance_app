@@ -39,7 +39,7 @@ payload = MIMEBase('application', 'octate-stream')
 payload.set_payload((attach_file).read())
 encoders.encode_base64(payload) #encode the attachment
 #add payload header with filename
-payload.add_header('Content-Decomposition', 'attachment', filename=report.html)
+payload.add_header('Content-Decomposition', 'attachment', filename="report.html")
 message.attach(payload)
 #Create SMTP session for sending the mail
 session = smtplib.SMTP('173.247.240.172', 587)
