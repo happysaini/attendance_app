@@ -90,7 +90,7 @@ public class SetUp {
 			capabilities.setCapability("allowTestPackages", true);
 			capabilities.setCapability("automatioName", "UiAutomation2");
 			capabilities.setCapability("app",
-					System.getProperty("user.dir") + "\\app\\app-debug.apk");
+					System.getProperty("user.dir") + "/app/app-debug.apk");
 			try {
 				driver.set(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:" + portNumber + "/wd/hub"),
 						capabilities));
