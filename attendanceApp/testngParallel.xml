@@ -7,7 +7,7 @@
 	</listeners>
 
   <test name="Device1" >
-	  <parameter name="portNumber" value="4723"/>
+	  <parameter name="portNumber" value="4600"/>
 	  <parameter name="udid" value="${udid1}"/>
 	  <parameter name="deviceName" value="${deviceName1}"/>
   
