@@ -39,13 +39,12 @@ payload = MIMEBase('application', 'octate-stream')
 payload.set_payload((attach_file).read())
 encoders.encode_base64(payload) #encode the attachment
 #add payload header with filename
-payload.add_header('Content-Decomposition', 'attachment', filename="Test-Automaton-Report.html")
+payload.add_header('Content-Disposition', 'attachment', filename="Test-Automaton-Report.html")
 message.attach(payload)
 #Create SMTP session for sending the mail
 session = smtplib.SMTP('173.247.240.172', 587)
 session.starttls() #enable security
 session.login(sender_address, sender_pass) #login with mail_id and password
-text = message.as_string()
-session.sendmail(sender_address, receiver_address, text)
+session.sendmail(sender_address, receiver_address, message.as_string())
 session.quit()
 print('Mail Sent')
