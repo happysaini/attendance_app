@@ -59,7 +59,7 @@ stages:
         adb devices
         cd attendanceApp
         mvn install -Dmaven.test.skip=true
-        mvn clean compile test -DsuiteXmlFile=Parallel -DdeviceName1=google -Dudid1="emulator-5556" -DdeviceName2=nexus -Dudid2="emulator-5554"
+        mvn clean compile test -DsuiteXmlFile=Single -DdeviceName1=nexus -Dudid1="emulator-5554"
       displayName: 'Testing Application'
     - bash: |
         allure generate $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
