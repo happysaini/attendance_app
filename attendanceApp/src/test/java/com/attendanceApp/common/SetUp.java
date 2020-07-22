@@ -58,7 +58,7 @@ public class SetUp {
 		PropertyConfigurator.configure(log4jConfPath);
 			try {
 				if(!deviceName.equals("Android")){
-					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "\\emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
+					List<String> commandToLaunchEmulator = Arrays.asList("/c","c:","&&","cd",System.getenv("ANDROID_HOME") + "/emulator","&&","emulator","-avd",deviceName,"-port",udid.split("-")[1], "-no-boot-anim");
 					runGivenCommand(commandToLaunchEmulator);
 					Thread.sleep(60000);
 					Log.info("Wait for " + deviceName + " emulator to launch");
