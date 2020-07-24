@@ -42,5 +42,6 @@ stages:
         pip install argparse
       displayName: 'Install Common  Depndencies'
     - script: |
+        cat script/slack_notifications.py
         python script/slack_notifications.py --html_report_path script/index.html
       displayName: 'Sending Slack Notification'
