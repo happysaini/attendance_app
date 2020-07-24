@@ -41,36 +41,6 @@ stages:
         pip install mime
         pip install argparse
       displayName: 'Install Common  Depndencies'
-    - task: Bash@3
-      inputs:
-        filePath: 'script/setup.sh'
-      displayName: 'Install Emulator'
-    - task: Cache@2
-      inputs:
-        key: '"funcs" | maven |"$(Agent.OS)" | **/pom.xml'
-        restoreKeys: |
-        path: $(MAVEN_CACHE_FOLDER)
-      displayName: Cache Maven local repo
-    - task: MavenAuthenticate@0
-      displayName: Authenticate Maven to Artifacts feed
-      inputs:
-        artifactsFeeds: artifacts-maven
-    - bash: |
-        adb devices
-        cd attendanceApp
-        mvn install -Dmaven.test.skip=true
-        mvn clean compile test -DsuiteXmlFile=Distributed -DdeviceName1=nexus -Dudid1="emulator-5554" -DdeviceName2=google -Dudid2="emulator-5556"
-      displayName: 'Testing Application'
-    - bash: |
-        allure generate $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-results --clean -o $(System.DefaultWorkingDirectory)/attendanceApp/target/allure-report
-      displayName: Generate allure report
-    - bash: |
-        python script/slack_notifications.py --html_report_path $(System.DefaultWorkingDirectory)/attendanceApp/target/surefire-reports/index.html
+    - script: |
+        python script/slack_notifications.py --html_report_path script/index.html
       displayName: 'Sending Slack Notification'
-    - bash: |
-        python script/email_notifications.py --html_report_file "$(System.DefaultWorkingDirectory)/attendanceApp/target/TestReport/Test-Automaton-Report.html" --password ${{ parameters.EMAIL_PASS }} --email ${{ parameters.EMAIL }}
-      displayName: 'Sending Email Notification'
-    - publish: $(System.DefaultWorkingDirectory)/attendanceApp/target
-      artifact: report
-
-      
